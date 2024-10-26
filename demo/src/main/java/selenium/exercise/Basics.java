@@ -50,5 +50,27 @@ public class Basics {
         //check if the arraylist contains an item -> returns boolean
         boolean containsTen = arr.contains(10);
         System.out.println(containsTen);
+
+        //
+
+        //String is an object -> only the first initialised string (s) will be created bc Java considers s and s1 to be one and the same
+        //this is called string literal
+        String s = "Hello and welcome!";
+        String s1 = "Hello and welcome!";
+
+        //the story, however, is different if...
+        String stringObject = new String("Hello and welcome!");
+        String stringObject1 = new String("Hello and welcome!");
+        //these lines create two different objects (different memory allocations) and thus are treated as two separate objects.
+
+        String splitString[] = s.split(" "); //split strings with whatever delimiter (in this case a space)
+        s1.trim(); //remove all the white spaces
+
+
+        //print char by char
+        for(int i = 0; i < stringObject.length(); i++){
+            System.out.println(stringObject.charAt(i));
+        }
+
     }
 }
