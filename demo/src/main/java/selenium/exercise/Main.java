@@ -4,7 +4,27 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Main {
+    //this method is accessed via Basics.java
+    public int add(int a, int b){
+        return a+b;
+    }
+
+    //private methods can only be accessed by other methods in current class (i.e., in the 'Main' class)
+    private int subtract(int a, int b){
+        return b-a;
+    }
+
+    public static int multiply(int a, int b){
+        //static gives the class-level access (can be called without declaring new object)
+        return a * b;
+    }
+
     public static void main(String[] args) {
+        Main m = new Main();
+        m.subtract(1, 5);
+
+        multiply(10, 10); //as opposed to m.multiply(a, b)
+        
         //ChromeDriver driver = new ChromeDriver(); -> less flexible but more detailed and in depth, as it gives access to specific methods available only to Chrome
 
         //invoke browser manually, results in faster execution and more specific version of the Chrome (maybe needed to support older releases)

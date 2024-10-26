@@ -5,7 +5,24 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Basics {
+
+    public void printHelloWorld(){
+        //void -> returns nothing, anything else returns something
+        System.out.println("Hello World!");
+    }
+
     public static void main(String[] args) {
+        //get methods from the same class
+        Basics p = new Basics();
+        p.printHelloWorld();
+
+        //get methods from different file
+        Main m = new Main();
+        m.add(2, 3);
+
+        //private methods from Main.java cannot be accessed here -> returns "not visible" error
+        //m.subtract(1, 5);
+
         //declare new array with fixed value to be stored
         int[] arrayNum = new int[5]; 
         arrayNum[0] = 1;
