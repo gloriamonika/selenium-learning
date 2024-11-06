@@ -45,5 +45,13 @@ public class Locators {
         driver.findElement(By.xpath("//input[@text][2]")).clear(); //clear removes all the content inside
         //css selector also enables indexing, use :nth-child(n), starts with 1 -> css selector sees any hidden attribute, xpath ignores the attribute
         driver.findElement(By.cssSelector("input[type='text'].nth-child(3)")).sendKeys("gloria@gmail.com");
+
+        //to trace the html tree in case there's no identifier, can use the following xpath format: //parent/child
+        driver.findElement(By.xpath("//form/input[3]")).sendKeys("0812345678900");
+        
+        //this will return the 'element is intercepted' error
+        driver.findElement(By.cssSelector(".reset-pwd-btn")).click();
+        String info = driver.findElement(By.cssSelector("form p")).getText();
+        System.out.println(info);
     }
 }
