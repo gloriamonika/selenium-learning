@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Locators {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         WebDriver driver = new ChromeDriver();
         driver.get("https://rahulshettyacademy.com/locatorspractice");
         
@@ -36,22 +36,38 @@ public class Locators {
         //link text locator, enables user to click on link by passing the title of the link
         driver.findElement(By.linkText("Forgot your password?")).click();
 
+        //for SPAs can add delay (1s) or something
+        Thread.sleep(5000);
+
         //construct xpath via html properties -> //tagname[@attribute='value']
         //e.g.: <input type="text" placeholder="search" value=""/> -> xpath selector will be //input[@placeholder="search"]
-        driver.findElement(By.xpath("//input[@placeholder='Name']")).sendKeys("gloria");
-        driver.findElement(By.xpath("//input[@placeholder='Email']")).sendKeys("gloria@gmail.com");
+        driver.findElement(By.xpath("//input[@placeholder='Name']")).sendKeys("rahul");
+        driver.findElement(By.xpath("//input[@placeholder='Email']")).sendKeys("gloria@email.com");
 
         //xpath enables indexing, starts with 1
-        driver.findElement(By.xpath("//input[@text][2]")).clear(); //clear removes all the content inside
+        //driver.findElement(By.xpath("//input[@text][2]")).clear(); //clear removes all the content inside
         //css selector also enables indexing, use :nth-child(n), starts with 1 -> css selector sees any hidden attribute, xpath ignores the attribute
-        driver.findElement(By.cssSelector("input[type='text'].nth-child(3)")).sendKeys("gloria@gmail.com");
+        //driver.findElement(By.cssSelector("input[type='text'].nth-child(3)")).sendKeys("gloria@email.com");
 
         //to trace the html tree in case there's no identifier, can use the following xpath format: //parent/child
         driver.findElement(By.xpath("//form/input[3]")).sendKeys("0812345678900");
         
-        //this will return the 'element is intercepted' error
+        //this will return the 'element click intercepted' error
         driver.findElement(By.cssSelector(".reset-pwd-btn")).click();
         String info = driver.findElement(By.cssSelector("form p")).getText();
         System.out.println(info);
+
+        //or can try finding by combining all the selectors -> not recommended, concise and easy to read (and understand) selectors are recommended instead
+        driver.findElement(By.className("go-to-login-btn")).click(); 
+        //driver.findElement(By.xpath("//div[@class='forgot-pwd-btn-container']/button[1]")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.id("inputUsername")).sendKeys("rahul");
+
+        //or can try finding by regex, all regex rules should apply
+        driver.findElement(By.cssSelector("input[type*='pass']")).sendKeys("rahulshettyacademy");
+        driver.findElement(By.xpath("//input[@id='chkboxOne']")).click();
+        //can also use contains keyword to find any and all elements matching with the passed string (e.g., submit)
+        driver.findElement(By.xpath("//button[contains(@class,'submit')]")).click();
+
     }
 }
