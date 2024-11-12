@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 
-
 public class Locators2 {
     public static void main(String[] args) throws InterruptedException {
         WebDriver driver = new ChromeDriver();
@@ -27,6 +26,10 @@ public class Locators2 {
         Assert.assertEquals(information, "You are successfully logged in.");
         Assert.assertEquals(greeting, "Hello " + name + ",");
         
+        //generate xpath via button title -> button with 'log out' title
+        driver.findElement(By.xpath("//button[text() = 'Log Out']")).click();
+        // xpath: //*[text()='some text here'] -> identifies only the title, doesn't matter what the tag is
+        driver.close();
     }
     
 }
