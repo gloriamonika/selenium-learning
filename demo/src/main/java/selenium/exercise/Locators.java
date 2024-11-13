@@ -79,6 +79,5 @@ public class Locators {
         //can also use contains keyword to find any and all elements matching with the passed string (e.g., submit)
         driver.findElement(By.xpath("//button[contains(@class,'submit')]")).click();
         driver.close();
-
     }
 }
