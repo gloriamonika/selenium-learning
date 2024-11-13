@@ -7,6 +7,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Locators {
+    public static String getPassword(WebDriver driver){
+       String passwordTxt = driver.findElement(By.cssSelector("form p")).getText();
+       //get the password
+       String[] passwordPart = passwordTxt.split("'");
+       return passwordPart[1];
+    }
     public static void main(String[] args) throws InterruptedException {
         WebDriver driver = new ChromeDriver();
         driver.get("https://rahulshettyacademy.com/locatorspractice");
@@ -57,6 +63,9 @@ public class Locators {
         String info = driver.findElement(By.cssSelector("form p")).getText();
         System.out.println(info);
 
+        String password = getPassword(driver);
+        System.out.println(password);
+        Thread.sleep(1000);
         //or can try finding by combining all the selectors -> not recommended, concise and easy to read (and understand) selectors are recommended instead
         driver.findElement(By.className("go-to-login-btn")).click(); 
         //driver.findElement(By.xpath("//div[@class='forgot-pwd-btn-container']/button[1]")).click();
@@ -64,10 +73,12 @@ public class Locators {
         driver.findElement(By.id("inputUsername")).sendKeys("rahul");
 
         //or can try finding by regex, all regex rules should apply
-        driver.findElement(By.cssSelector("input[type*='pass']")).sendKeys("rahulshettyacademy");
+        driver.findElement(By.cssSelector("input[type*='pass']")).sendKeys(password);
+
         driver.findElement(By.xpath("//input[@id='chkboxOne']")).click();
         //can also use contains keyword to find any and all elements matching with the passed string (e.g., submit)
         driver.findElement(By.xpath("//button[contains(@class,'submit')]")).click();
+        driver.close();
 
     }
 }
