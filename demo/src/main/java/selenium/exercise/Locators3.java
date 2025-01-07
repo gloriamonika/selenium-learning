@@ -30,6 +30,8 @@ public class Locators3 {
         //to traverse down-top (child->parent), can use /parent::tagname property: /header/div/button[1]/parent::div
         String info = driver.findElement(By.xpath("//header/div/button[1]/parent::div/button[2]")).getText();
         System.out.println(info);
+
+        driver.quit();
         
     }
 }
